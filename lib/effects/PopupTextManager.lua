@@ -1,3 +1,6 @@
+--Author: Marcelo Silva Nascimento Mancini
+--Github: github.com/MrcSnm
+--06/03/2020
 PopupTextManager = Class{}
 
 --Dont forget to include popup text
@@ -46,29 +49,29 @@ end
 --R, G, B, A are the initial to don't change color unless necessary, return if needs to get new current color
 function PopupTextManager:setPopupColor(r, g, b, a, pop)
 
-    if(pop.color ~= nil or pop.fadeIn ~= nil or pop.fadeOut ~= nil) then
+    local fadeInAlpha = 0
+    local fadeOutAlpha = 1
+    if(pop.timeElapsed >= pop.fadeIn.start) then
+        if(pop.fadeIn.finish == 0 and pop.fadeIn.start == 0) then
+            fadeInAlpha = 1
+        else
+            fadeInAlpha = math.min((pop.timeElapsed - pop.fadeIn.start) / (pop.fadeIn.finish - pop.fadeIn.start), 1)
+        end
+    end
+    if(pop.timeElapsed >= pop.fadeOut.start) then
+        fadeOutAlpha = 1 - math.min((pop.timeElapsed - pop.fadeOut.start) / (pop.fadeOut.finish - pop.fadeOut.start), 1)
+    end
+    if(pop.color ~= nil) then
         local c = pop.color
-        local fadeInAlpha = 0
-        local fadeOutAlpha = 1
-        if(pop.timeElapsed >= pop.fadeIn.start) then
-            if(pop.fadeIn.finish == 0 and pop.fadeIn.start == 0) then
-                fadeInAlpha = 1
-            else
-                fadeInAlpha = math.min((pop.timeElapsed - pop.fadeIn.start) / (pop.fadeIn.finish - pop.fadeIn.start), 1)
-            end
-        end
-        if(pop.timeElapsed >= pop.fadeOut.start) then
-            fadeOutAlpha = 1 - math.min((pop.timeElapsed - pop.fadeOut.start) / (pop.fadeOut.finish - pop.fadeOut.start), 1)
-        end
-
         if(c.r ~= r or c.g ~= g or c.b ~= b or c.a~= a) then
             love.graphics.setColor(c.r, c.g, c.b, (c.a * fadeInAlpha) * fadeOutAlpha)
             return true
-        else
-            love.graphics.setColor(255,255,255, (255 * fadeInAlpha) * fadeOutAlpha)
-            return true
         end
+    else
+        love.graphics.setColor(255,255,255, (255 * fadeInAlpha) * fadeOutAlpha)
+        return true
     end
+
     return false
 end
 

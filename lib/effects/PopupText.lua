@@ -1,3 +1,6 @@
+--Author: Marcelo Silva Nascimento Mancini
+--Github: github.com/MrcSnm
+--06/03/2020
 PopupText = Class{}
 
 

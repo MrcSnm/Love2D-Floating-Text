@@ -1,4 +1,7 @@
-
+--Author: Marcelo Silva Nascimento Mancini
+--Example of how to use
+--Github: github.com/MrcSnm
+--06/03/2020
 Class = require 'lib/class'
 require 'lib/effects/PopupText'
 require 'lib/effects/PopupTextManager'
@@ -37,12 +40,58 @@ function love.load()
             circular = {totalAngle = math.random(-math.pi * 4, math.pi * 4), radiusX = math.random(-40, 40), radiusY = math.random(-40, 40)}
         })
     end
+
+    customClass = Class{__includes = PopupText}
+    function customClass:update(dt)
+        self.scaleX = self.scaleX + 3 * dt
+    end
+    gPopupManagerCustomClass = PopupTextManager(customClass)
+    gPopupManagerCustomClass:addPopup(
+    {
+        text = "Custom Popup Class example"  ,
+        x = 200,
+        y = 200,
+        blendMode = 'additive'
+    })
+
+
+    function customRenderFunction(popup)
+        love.graphics.print(popup.text, popup.x, popup.y, popup.rotation, popup.scaleX, popup.scaleY)
+        local width = #popup.text * popup.scaleX * 7.5
+        local height = 12 * popup.scaleY
+        love.graphics.rectangle('line', popup.x, popup.y, width, height)
+    end
+
+
+    gPopupManagerCustomRenderFunc = PopupTextManager(nil, customRenderFunction)
+    gPopupManagerCustomRenderFunc:addPopup(
+    {
+        text = "Custom Render Function Example",
+        x = 50,
+        y = 50,
+        scaleX = 3,
+        scaleY = 3,
+        color = {r = 0, g = 255, b = 0, a = 255}
+    })
 end
 
 function love.update(dt)
     gPopupManager:update(dt)
+    if(gPopupManager.activeCount == 0) then
+        gPopupManagerCustomClass:update(dt)
+    end
+    if(gPopupManagerCustomClass.activeCount == 0) then
+        gPopupManagerCustomRenderFunc:update(dt)
+    end
 end
 
 function love.draw()
     gPopupManager:render()
+
+    if(gPopupManager.activeCount == 0) then
+        gPopupManagerCustomClass:render()
+    end
+    if(gPopupManagerCustomClass.activeCount == 0) then
+        gPopupManagerCustomRenderFunc:render()
+    end
 end
