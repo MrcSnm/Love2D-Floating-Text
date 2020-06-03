@@ -19,17 +19,17 @@ PopupTextManagerInstance:addPopup(
 More examples can be found at main.lua
 
 ## Features
-*You can input a Class base for PopupTextManager, it will be used for the newer popups
-*Use your own render function
-*Move by parameters
-*Circular Motion
-*Fade In and Fade Out
-*Blend Modes, Scaling, Rotation, Time on Screen
-*Add your own font to the text
+- Input a Class base for PopupTextManager
+- Use your own render function
+- Move by parameters
+- Circular Motion
+- Fade In and Fade Out
+- Blend Modes, Scaling, Rotation, Time on Screen
+- Add your own font to the text
 
 ## To Do
--Add a rotate by
--Add a scale by
+- Add a rotate by
+- Add a scale by
 
 ## How to
 - Download class.lua, PopupText.lua, PopupTextManager.lua
