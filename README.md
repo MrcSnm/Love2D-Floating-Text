@@ -16,6 +16,9 @@ PopupTextManagerInstance:addPopup(
         duration = 2
     })
 ```
+
+![Preview of Love2D-Floating-Text](floating-text.gif)
+
 More examples can be found at main.lua
 
 ## Features
