@@ -4,7 +4,7 @@ Provides an easy and efficient interface for animated floating text for Love2D
 PopupTextManagerInstance:addPopup(
     {
         text = "Example Text",
-        color = {r = 255, g = 0, b = 0, a = 255},
+        color = {r = 1, g = 0, b = 0, a = 1},
         x = 200,
         y = 200,
         scaleX = 4,
@@ -56,13 +56,13 @@ function love.load()
     {
         text = "Example Text",
         font = anyFont
-        color = {r = 255, g = 0, b = 0, a = 255},
+        color = {r = 1, g = 0, b = 0, a = 1},
         x = 200,
         y = 200,
         scaleX = 4,
         scaleY = 4,
         circular = {totalAngle = math.pi, radiusX = 40, radiusY = 40}
-        blendMode = 'additive',
+        blendMode = 'add',
         fadeIn = {start = 0.2, finish = 0.7},
         fadeOut = {start = 0.7, finish = 2},
         dX = 40,

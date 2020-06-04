@@ -68,7 +68,7 @@ function PopupTextManager:setPopupColor(r, g, b, a, pop)
             return true
         end
     else
-        love.graphics.setColor(255,255,255, (255 * fadeInAlpha) * fadeOutAlpha)
+        love.graphics.setColor(1,1,1, (1 * fadeInAlpha) * fadeOutAlpha)
         return true
     end
 
