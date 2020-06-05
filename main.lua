@@ -51,7 +51,7 @@ function love.load()
         text = "Custom Popup Class example"  ,
         x = 200,
         y = 200,
-        blendMode = 'additive'
+        blendMode = 'add'
     })
 
 
