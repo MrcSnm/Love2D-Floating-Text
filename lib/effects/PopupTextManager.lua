@@ -63,8 +63,9 @@ function PopupTextManager:setPopupColor(r, g, b, a, pop)
     end
     if(pop.color ~= nil) then
         local c = pop.color
-        if(c.r ~= r or c.g ~= g or c.b ~= b or c.a~= a) then
-            love.graphics.setColor(c.r, c.g, c.b, (c.a * fadeInAlpha) * fadeOutAlpha)
+        local cAlpha = c.a * fadeOutAlpha * fadeInAlpha
+        if(c.r ~= r or c.g ~= g or c.b ~= b or cAlpha~= a) then
+            love.graphics.setColor(c.r, c.g, c.b, cAlpha)
             return true
         end
     else
